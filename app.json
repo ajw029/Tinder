@@ -1,7 +1,7 @@
 {
   "name": "Tinder",
   "description": "A barebones Node.js app using Express 4",
-  "repository": "",
+  "repository": "https://github.com/ajw029/Tinder",
   "logo": "http://node-js-sample.herokuapp.com/node.svg",
   "keywords": ["node", "express", "static"],
   "image": "heroku/nodejs"
