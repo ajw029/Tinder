@@ -2,13 +2,13 @@ var application_root = __dirname;
 var express = require("express");
 var bodyParser = require("body-parser");
 
-var http = require('http');
-var httpServer = http.Server(app);
-
 var app = express();
 var port = 8080;
 
 app.use(express.static(__dirname));
+app.set('view engine', 'ejs');
+app.use(express.static('./public', { maxAge:  0}));
+app.use(express.static(__dirname + '/views'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(function(req, res, next) {
@@ -100,9 +100,9 @@ app.post('/checkmatch', function (request, response) {
 	if (bFound) {
 		response.send("true");
 	}
-	else 
+	else
 		response.send("false");
-	
+
 });
 
 app.post('/getuser', function (request, response) {
@@ -114,12 +114,13 @@ app.post('/getuser', function (request, response) {
 			response.send(arraylist[i]);
 		}
 	}
-	
+
 });
 
-app.get('/', function(req,res) {
-  res.sendfile('index.html');
+app.get(['/'], function(req, res) {
+  res.render('index');
 });
 
-// Launch server
-app.listen(process.env.PORT||port);
+app.listen(port , function () {
+  console.log('Server listening on port ' + port + '!');
+});

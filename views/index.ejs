@@ -4,17 +4,17 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 		<title>Welcome to Tinder</title>
-		<link rel="stylesheet" type="text/css" href="css/card.css">
-		<link rel="stylesheet" type="text/css" href="css/pulse.css">
-		<link rel="stylesheet" type="text/css" href="css/grid.css">
-		<link rel="stylesheet" type="text/css" href="css/nav.css">
+		<link rel="stylesheet" type="text/css" href="/css/card.css">
+		<link rel="stylesheet" type="text/css" href="/css/pulse.css">
+		<link rel="stylesheet" type="text/css" href="/css/grid.css">
+		<link rel="stylesheet" type="text/css" href="/css/nav.css">
 
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="css/swipe.css">
+		<link rel="stylesheet" href="/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/swipe.css">
 
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
-        <script src="js/data.js"></script>
+    <script src="/js/data.js"></script>
 
 	</head>
 	<body onload="init()" draggable="false">
@@ -23,7 +23,7 @@
 		</noscript>
 
         <nav id='cssmenu'class="col-12">
-			<img src="logo.png" alt="Tinder"></img>
+			<img src="/img/logo.png" alt="Tinder"></img>
         </nav>
 
         <div id="loading-screen" style="display:block">
@@ -81,7 +81,7 @@
 
 		var urlEndpoint = "";
 
-		/* 
+		/*
 		 * Gets My data and loads the stack of cards
 		 */
 		function init() {
@@ -94,7 +94,7 @@
 			}
         );}
 
-		/* 
+		/*
 		 * Checks the server if a match exists
 		 */
 		function checkMatch(their_id, my_id) {
@@ -102,13 +102,13 @@
 				{
 					my_id: my_id,
 					their_id: their_id
-				}, 
+				},
 				function(data, status){
 					if(data === "true") {
 						$.post(urlEndpoint + "/getuser",
 							{
 								their_id: their_id
-							}, 
+							},
 							function(data, status){
 								switchMatchPanel(data, my_id);
 							}
@@ -119,7 +119,7 @@
 			);
 		}
 
-		/* 
+		/*
 		 * Opens and closes the overlay for a match
 		 */
 		function switchMatchPanel(their_acc, my_id) {
@@ -138,7 +138,7 @@
 			}
 		}
 
-		/* 
+		/*
 		 * Checks the server for potential matches
 		 */
 		function loadPotentials() {
@@ -159,22 +159,22 @@
 						}
 						setUpDrag(lastId);
 
-						potential_list.style.display = "block";				
+						potential_list.style.display = "block";
 						load_screen.style.display = "none";
 					}
 					else {
-						potential_list.style.display = "none";				
+						potential_list.style.display = "none";
 						load_screen.style.display = "block";
 					}
 				}
 				else {
-					potential_list.style.display = "none";				
+					potential_list.style.display = "none";
 					load_screen.style.display = "block";
 				}
 			});
 		}
 
-		/* 
+		/*
 		 * Creates a list item for the stack of cards
 		 */
 		function createTinderCard(element, i) {
@@ -182,7 +182,7 @@
 	        var tmpl = document.getElementById('tinder-card-templ').content.cloneNode(true);
 
 	        var tempObj = element;
-	        
+
 	        tmpl.querySelector('.card-name').innerText =  tempObj.name;
 			tmpl.children[0].children[0].children[0].children[2].src=tempObj.imgsrc;
 			tmpl.children[0].children[0].children[1].children[1].innerText = ", " +tempObj.age;
@@ -246,7 +246,7 @@
 		    return -1;
 		}
 
-		/* 
+		/*
 		 * Sets up touch handlers
 		 */
 		function setUpDrag(id) {
@@ -290,8 +290,8 @@
 				}
 				else {
 					list_item.children[0].children[0].children[1].style.display ="none";
-					list_item.children[0].children[0].children[0].style.display ="none";	
-					direction = null;				
+					list_item.children[0].children[0].children[0].style.display ="none";
+					direction = null;
 				}
 			});
 			stack.on('dragend', function (e) {
@@ -306,12 +306,12 @@
 					}
 
 					card.destroy();
-					removeCard(list_item.id);					
+					removeCard(list_item.id);
 				}
 			});
 		}
 
-		/* 
+		/*
 		 * Pulses while waiting for potential matches
 		 */
 		var size = 100;
@@ -326,33 +326,33 @@
 			$('.pulse').width(size).height(size);
 		    $('.pulse').css('opacity', '0.3');
 		  }
-		},0); 
+		},0);
 
 	</script>
 
-	<script src="js/actions.js"></script>
-	<script src="js/swing.js"></script>
+	<script src="/js/actions.js"></script>
+	<script src="/js/swing.js"></script>
 
 	<template id="tinder-card-templ">
 		<li>
 			<div class="tinder-card">
 				<div class="tinder-img">
-					<img style="display:none" class="like-stamp" src="like.png"></img>
-					<img style="display:none" class="nope-stamp" src="nope2.png"></img>
-					<img draggable="false" src="jung.jpg"></img>
-				</div>  
+					<img style="display:none" class="like-stamp" src="/img/like.png"></img>
+					<img style="display:none" class="nope-stamp" src="/img/nope2.png"></img>
+					<img draggable="false" src="/img/jung.jpg"></img>
+				</div>
 			<div class="info">
 				<span class="card-name">Jung, </span>
-				<span class="card-age">18</span>	
+				<span class="card-age">18</span>
 
-				<span class="similarities"> 
+				<span class="similarities">
 					<i class="fa fa-book"></i>
 					<span>0</span>
 				</span>
 
 				<span class="similarities">
 					<i class="fa fa-users"></i>
-					<span>0</span> 
+					<span>0</span>
 				</span>
 			</div>
 		</li>
